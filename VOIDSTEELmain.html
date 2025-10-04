@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VOIDSTEEL - Five creators. Infinite possibilities.</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --cyan: #00ffff;
+            --magenta: #ff00ff;
+            --dark-bg: #0a0a0a;
+            --card-bg: rgba(20, 20, 20, 0.8);
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            /* Added for Console */
+            --border-glow: rgba(0, 255, 255, 0.3);
+        }
+        
+        body {
+            font-family: 'Orbitron', monospace;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--cyan), var(--magenta));
+            border-radius: 4px;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 50px;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+            animation: slideDown 0.5s ease-out;
+        }
+        
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, var(--cyan), var(--magenta));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: all 0.3s ease;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--cyan), var(--magenta));
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--cyan);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: radial-gradient(ellipse at center, rgba(0, 255, 255, 0.02) 0%, transparent 60%);
+        }
+
+        /* Combined Particle Styles (from both files) */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none; /* Added from console to not block interactions */
+        }
+        
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--cyan);
+            border-radius: 50%;
+            opacity: 0;
+            animation: float 20s infinite linear;
+        }
+        
+        .particle:nth-child(odd) {
+            background: var(--magenta);
+        }
+
+        /* Added variants from console for visual interest */
+        .particle:nth-child(2n) { 
+            animation-duration: 25s; 
+        }
+
+        .particle:nth-child(3n) { 
+            animation-duration: 15s; 
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7; /* Adjusted opacity to match console file */
+            }
+            90% {
+                opacity: 0.7; /* Adjusted opacity to match console file */
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+        
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            position: relative;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .logo {
+            font-size: 5rem;
+            font-weight: 900;
+            letter-spacing: 0.2em;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--cyan), var(--magenta), var(--cyan));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient 3s ease infinite;
+            text-shadow: 0 0 50px rgba(0, 255, 255, 0.5);
+            /* Added for console flair */
+            filter: drop-shadow(0 0 10px rgba(255,0,255,0.3));
+        }
+        
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        .tagline {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.1em;
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.5s forwards;
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+        
+        /* Glowing lines */
+        .glow-lines {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            opacity: 0.3;
+        }
+        
+        .glow-line {
+            position: absolute;
+            height: 1px;
+            width: 200px;
+            background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+            animation: slide 10s infinite linear;
+        }
+        
+        .glow-line:nth-child(2) {
+            top: 30%;
+            animation-delay: 2s;
+            background: linear-gradient(90deg, transparent, var(--magenta), transparent);
+        }
+        
+        .glow-line:nth-child(3) {
+            top: 60%;
+            animation-delay: 4s;
+        }
+        
+        @keyframes slide {
+            0% {
+                left: -200px;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+        
+        /* Sections */
+        section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 100px 50px;
+            opacity: 0;
+            animation: fadeInSection 0.8s ease-out forwards;
+        }
+        
+        @keyframes fadeInSection {
+            to {
+                opacity: 1;
+            }
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--cyan), var(--magenta));
+        }
+        
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .project-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            border: 1px solid transparent;
+            background: linear-gradient(135deg, var(--card-bg), var(--card-bg)) padding-box,
+                        linear-gradient(135deg, var(--cyan), var(--magenta)) border-box;
+        }
+        
+        .project-card:hover::before {
+            opacity: 1;
+        }
+        
+        .project-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .project-description {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-weight: 400;
+        }
+        
+        /* Members Grid */
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .member-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .member-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--cyan), var(--magenta));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .member-card:hover {
+            transform: translateY(-3px);
+            background: rgba(30, 30, 30, 0.8);
+        }
+        
+        .member-card:hover::after {
+            transform: scaleX(1);
+        }
+        
+        .member-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .member-role {
+            font-size: 0.9rem;
+            color: var(--cyan);
+            font-weight: 400;
+        }
+        
+        /* About Section */
+        .about-content {
+            max-width: 800px;
+            margin: 50px auto 0;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+        
+        /* Footer */
+        footer {
+            background: rgba(5, 5, 5, 0.9);
+            padding: 30px 50px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .footer-text {
+            font-size: 0.8rem;
+            color: rgba(160, 160, 160, 0.5);
+            letter-spacing: 0.05em;
+        }
+        
+        /* Console Card Styles - Merged from voidsteel_console.html */
+        #console {
+            /* Reset padding/max-width for full-bleed background effect, then re-constrain content */
+            max-width: none;
+            padding: 0; 
+            background: radial-gradient(ellipse at center, rgba(0, 255, 255, 0.01) 0%, transparent 80%);
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #console > h2 {
+            margin-bottom: 0; /* Adjust H2 margin for the console section */
+        }
+
+        .console-tagline {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.1em;
+            margin-top: 5px; 
+            margin-bottom: 50px;
+            text-align: center;
+            display: block;
+        }
+
+        .console-card {
+            margin-top: 0;
+            background: rgba(20, 20, 20, 0.9); /* Adjusted card-bg transparency */
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 8px 32px rgba(0,255,255,0.15), 
+                        0 0 0 1px rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .console-card:hover {
+            box-shadow: 0 12px 40px rgba(0,255,255,0.25), 
+                        0 0 0 1px rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        .input-group {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .input-label {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .console-card textarea {
+            width: 100%;
+            padding: 16px;
+            font-family: 'Orbitron', monospace;
+            font-size: 14px;
+            border-radius: 10px;
+            border: 2px solid rgba(0,255,255,0.2);
+            outline: none;
+            background: rgba(0,0,0,0.8);
+            color: var(--cyan);
+            resize: vertical;
+            min-height: 80px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .console-card textarea:focus {
+            border-color: var(--cyan);
+            box-shadow: 0 0 20px rgba(0,255,255,0.3),
+                        inset 0 0 10px rgba(0,255,255,0.1);
+            transform: scale(1.02);
+        }
+
+        .console-card textarea::placeholder {
+            color: rgba(160,160,160,0.6);
+            font-style: italic;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .console-card button {
+            padding: 14px 28px;
+            border-radius: 12px;
+            border: none;
+            font-family: 'Orbitron', monospace;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            color: #000;
+            background: linear-gradient(135deg, var(--cyan), var(--magenta));
+            box-shadow: 0 4px 15px rgba(0,255,255,0.3), 
+                        0 0 0 1px rgba(255,255,255,0.1);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .console-card button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .console-card button:hover {
+            background: linear-gradient(135deg, var(--magenta), var(--cyan));
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(0,255,255,0.4), 
+                        0 0 30px rgba(255,0,255,0.3);
+        }
+
+        .console-card button:hover::before {
+            left: 100%;
+        }
+
+        .console-card button:active {
+            transform: translateY(-1px) scale(1.02);
+        }
+
+        .clear-btn {
+            background: linear-gradient(135deg, #ff4444, #ff6666) !important;
+            box-shadow: 0 4px 15px rgba(255,68,68,0.3) !important;
+        }
+
+        .clear-btn:hover {
+            background: linear-gradient(135deg, #ff6666, #ff4444) !important;
+            box-shadow: 0 8px 25px rgba(255,68,68,0.4) !important;
+        }
+
+        /* Status indicator */
+        .status {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            max-width: 90%; /* prevent overflow */
+            word-wrap: break-word; /* prevent overflow */
+            text-align: center;
+        }
+
+        .status.show {
+            opacity: 1;
+        }
+
+        .status.error {
+            color: #ff4444;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px;
+            }
+            
+            .nav-links {
+                gap: 20px;
+            }
+            
+            .nav-links a {
+                font-size: 0.8rem;
+            }
+            
+            .logo {
+                font-size: 3rem;
+            }
+            
+            .tagline {
+                font-size: 0.9rem;
+            }
+            
+            section {
+                padding: 60px 20px;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+
+            /* Console Responsive */
+            .console-card {
+                padding: 20px;
+            }
+            
+            .button-group {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .console-card button {
+                width: 100%;
+                max-width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">VS</div>
+            <div class="nav-links">
+                <a href="#projects">Projects</a>
+                <a href="#console">Console</a> <a href="#members">Members</a>
+                <a href="#about">About</a>
+            </div>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <div class="particles">
+            <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+            <div class="particle" style="left: 20%; animation-delay: 2s;"></div>
+            <div class="particle" style="left: 30%; animation-delay: 4s;"></div>
+            <div class="particle" style="left: 40%; animation-delay: 6s;"></div>
+            <div class="particle" style="left: 50%; animation-delay: 8s;"></div>
+            <div class="particle" style="left: 60%; animation-delay: 10s;"></div>
+            <div class="particle" style="left: 70%; animation-delay: 12s;"></div>
+            <div class="particle" style="left: 80%; animation-delay: 14s;"></div>
+            <div class="particle" style="left: 90%; animation-delay: 16s;"></div>
+            <div class="particle" style="left: 5%; animation-delay: 18s;"></div>
+            <div class="particle" style="left: 95%; animation-delay: 1s;"></div>
+        </div>
+        <div class="glow-lines">
+            <div class="glow-line" style="top: 20%;"></div>
+            <div class="glow-line"></div>
+            <div class="glow-line"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="logo">VOIDSTEEL</h1>
+            <p class="tagline">Five creators. Infinite possibilities. Explore the projects within the Void.</p>
+        </div>
+    </section>
+    
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3 class="project-name">Netherite Block</h3>
+                <p class="project-description">Premium Minecraft content creation hub. Crafting epic adventures and pushing the boundaries of block-based storytelling.</p>
+            </div>
+            <div class="project-card">
+                <h3 class="project-name">WebVoid</h3>
+                <p class="project-description">Next-generation web development initiative. Building immersive digital experiences that transcend traditional boundaries.</p>
+            </div>
+            <div class="project-card">
+                <h3 class="project-name">VoidMart</h3>
+                <p class="project-description">Revolutionary e-commerce platform. Connecting products with people through cutting-edge dropshipping technology.</p>
+            </div>
+            <div class="project-card">
+                <h3 class="project-name">NeuralCore</h3>
+                <p class="project-description">Advanced technology company pioneering the future. Developing breakthrough solutions for tomorrow's digital challenges.</p>
+            </div>
+            <div class="project-card">
+                <h3 class="project-name">VoidGames</h3>
+                <p class="project-description">Independent game development studio. Forging unforgettable gaming experiences from the depths of imagination.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="console">
+        <h2>Quantum Cipher</h2>
+        <span class="console-tagline">Secure your messages with the VOIDSTEEL encoder/decoder.</span>
+        <div class="console-card">
+            <div class="input-group">
+                <label class="input-label">Input Message</label>
+                <textarea id="inputText" rows="4" placeholder="Enter your secret message..."></textarea>
+            </div>
+            
+            <div class="button-group">
+                <button id="encodeBtn">🔐 Encode</button>
+                <button id="decodeBtn">🔓 Decode</button>
+                <button id="clearBtn" class="clear-btn">🗑️ Clear</button>
+            </div>
+            
+            <div class="input-group">
+                <label class="input-label">Output Result</label>
+                <textarea id="outputText" rows="4" placeholder="Encrypted/decrypted result appears here..." readonly></textarea>
+            </div>
+            
+            <div id="status" class="status"></div>
+        </div>
+    </section>
+
+    <section id="members">
+        <h2>Members</h2>
+        <div class="members-grid">
+            <div class="member-card">
+                <h3 class="member-name">ManaZ</h3>
+                <p class="member-role">Leader</p>
+            </div>
+            <div class="member-card">
+                <h3 class="member-name">JurryDegree</h3>
+                <p class="member-role">Core Member</p>
+            </div>
+            <div class="member-card">
+                <h3 class="member-name">InfiniteIntensity</h3>
+                <p class="member-role">Core Member</p>
+            </div>
+            <div class="member-card">
+                <h3 class="member-name">Countless</h3>
+                <p class="member-role">Core Member</p>
+            </div>
+            <div class="member-card">
+                <h3 class="member-name">OniJailer</h3>
+                <p class="member-role">Core Member</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="about">
+        <h2>About</h2>
+        <div class="about-content">
+            <p>VOIDSTEEL is a nexus of creativity and power, where five visionary minds converge to forge the future. Born from the digital underground, we are architects of tomorrow's reality. Our projects push the boundaries of what's possible, creating technologies that bridge the gap between imagination and implementation. In the void, we find infinite potential. In steel, we find unbreakable resolve.</p>
+        </div>
+    </section>
+    
+    <footer>
+        <p class="footer-text">© 2025 VOIDSTEEL. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all sections
+        document.querySelectorAll('section:not(.hero)').forEach(section => {
+            section.style.animationPlayState = 'paused';
+            observer.observe(section);
+        });
+        
+        // Add dynamic glow effect on mouse move
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            document.documentElement.style.setProperty('--mouse-x', x);
+            document.documentElement.style.setProperty('--mouse-y', y);
+        });
+
+        // --- Console JavaScript Logic - Merged from voidsteel_console.html ---
+
+        // Enhanced Encoder/Decoder maps with better cipher
+        const encodeMap = {
+            'A':'X','B':'Z','C':'Q','D':'W','E':'R','F':'T','G':'Y','H':'U',
+            'I':'I','J':'O','K':'P','L':'L','M':'K','N':'J','O':'H','P':'G',
+            'Q':'F','R':'D','S':'S','T':'A','U':'N','V':'B','W':'V','X':'C',
+            'Y':'E','Z':'M'
+        };
+
+        const decodeMap = {
+            'X':'A','Z':'B','Q':'C','W':'D','R':'E','T':'F','Y':'G','U':'H',
+            'I':'I','O':'J','P':'K','L':'L','K':'M','J':'N','H':'O','G':'P',
+            'F':'Q','D':'R','S':'S','A':'T','N':'U','B':'V','V':'W','C':'X',
+            'E':'Y','M':'Z'
+        };
+
+        // Enhanced transform function with better error handling
+        function transform(message, map) {
+            if (!message) return '';
+            
+            let result = '';
+            for (let char of message) {
+                const upperChar = char.toUpperCase();
+                if (map[upperChar]) {
+                    const newChar = map[upperChar];
+                    result += char === char.toLowerCase() ? newChar.toLowerCase() : newChar;
+                } else {
+                    result += char; // Keep non-alphabetic characters unchanged
+                }
+            }
+            return result;
+        }
+
+        // DOM Elements
+        const inputText = document.getElementById('inputText');
+        const outputText = document.getElementById('outputText');
+        const encodeBtn = document.getElementById('encodeBtn');
+        const decodeBtn = document.getElementById('decodeBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const status = document.getElementById('status');
+
+        // Status message function
+        function showStatus(message, isError = false) {
+            if (!status) return; // Guard for non-existent element if console is removed
+            status.textContent = message;
+            status.className = isError ? 'status show error' : 'status show';
+            setTimeout(() => {
+                status.classList.remove('show');
+            }, 2000);
+        }
+
+        // Live encoding as you type (with debouncing)
+        let debounceTimer;
+        if(inputText) { // Only run if console elements exist
+            inputText.addEventListener('input', () => {
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(() => {
+                    if (inputText.value.trim()) {
+                        const encoded = transform(inputText.value, encodeMap);
+                        outputText.value = encoded;
+                        showStatus(`Live encoded: ${inputText.value.length} characters processed`);
+                    } else {
+                        outputText.value = '';
+                        status.classList.remove('show');
+                    }
+                }, 300);
+            });
+
+            // Enhanced button events with feedback
+            encodeBtn.addEventListener('click', () => {
+                if (!inputText.value.trim()) {
+                    showStatus('Please enter a message to encode', true);
+                    inputText.focus();
+                    return;
+                }
+                
+                const result = transform(inputText.value, encodeMap);
+                outputText.value = result;
+                showStatus(`✅ Message encoded successfully! (${result.length} characters)`);
+                
+                // Add visual feedback
+                encodeBtn.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    encodeBtn.style.transform = '';
+                }, 150);
+            });
+
+            decodeBtn.addEventListener('click', () => {
+                if (!inputText.value.trim()) {
+                    showStatus('Please enter a message to decode', true);
+                    inputText.focus();
+                    return;
+                }
+                
+                const result = transform(inputText.value, decodeMap);
+                outputText.value = result;
+                showStatus(`✅ Message decoded successfully! (${result.length} characters)`);
+                
+                // Add visual feedback
+                decodeBtn.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    decodeBtn.style.transform = '';
+                }, 150);
+            });
+
+            clearBtn.addEventListener('click', () => {
+                inputText.value = '';
+                outputText.value = '';
+                showStatus('🧹 Console cleared');
+                inputText.focus();
+                
+                // Add visual feedback
+                clearBtn.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    clearBtn.style.transform = '';
+                }, 150);
+            });
+
+            // Keyboard shortcuts
+            document.addEventListener('keydown', (e) => {
+                if (e.ctrlKey || e.metaKey) {
+                    switch(e.key) {
+                        case 'e':
+                            e.preventDefault();
+                            encodeBtn.click();
+                            break;
+                        case 'd':
+                            e.preventDefault();
+                            decodeBtn.click();
+                            break;
+                        case 'l':
+                            e.preventDefault();
+                            clearBtn.click();
+                            break;
+                    }
+                }
+            });
+
+            // Auto-focus input and initial status message on console load
+            // Only runs if the console is present
+            window.addEventListener('load', () => {
+                // Check if the input field exists before trying to focus
+                if (inputText) {
+                    inputText.focus();
+                    showStatus('🚀 VOIDSTEEL Console ready. Start typing to encode!');
+                }
+            });
+
+            // Copy output to clipboard on double-click
+            outputText.addEventListener('dblclick', () => {
+                if (outputText.value.trim()) {
+                    navigator.clipboard.writeText(outputText.value).then(() => {
+                        showStatus('📋 Result copied to clipboard!');
+                    }).catch(() => {
+                        showStatus('Failed to copy to clipboard', true);
+                    });
+                }
+            });
+
+            // Add some extra visual flair
+            setInterval(() => {
+                const particles = document.querySelectorAll('.particle');
+                particles.forEach(particle => {
+                    if (Math.random() > 0.98) {
+                        particle.style.boxShadow = `0 0 10px ${Math.random() > 0.5 ? 'var(--cyan)' : 'var(--magenta)'}`;
+                        setTimeout(() => {
+                            particle.style.boxShadow = '';
+                        }, 1000);
+                    }
+                });
+            }, 100);
+        }
+    </script>
+</body>
+</html>
